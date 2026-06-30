@@ -1,5 +1,5 @@
 """
-evaluate.py
+evaluation.py
 ===========
 Evaluate the trained model on the held-out test split produced by train.py and
 write a confusion matrix, ROC curve, and a full metrics report to results/.
