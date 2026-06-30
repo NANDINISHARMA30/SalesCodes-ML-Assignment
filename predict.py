@@ -1,7 +1,5 @@
 """
 predict.py
-==========
-One-line predictor for screen-recapture (fake photo) detection.
 
     python predict.py some_image.jpg   ->   0.93
 
@@ -28,9 +26,7 @@ warnings.filterwarnings("ignore")
 MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "model.pkl")
 
 
-# --------------------------------------------------------------------------- #
-# Heuristic fallback (no model required)
-# --------------------------------------------------------------------------- #
+# Heuristic fallback-
 def _heuristic_score(feat: dict) -> float:
     """Map the most reliable physical cues to a fraud probability with a hand-
     tuned logistic. Used only when no trained model is present, so it just needs
@@ -46,9 +42,7 @@ def _heuristic_score(feat: dict) -> float:
     return 1.0 / (1.0 + math.exp(-max(-30.0, min(30.0, z))))
 
 
-# --------------------------------------------------------------------------- #
 # Main predictor
-# --------------------------------------------------------------------------- #
 def predict(image_path: str) -> float:
     from features import extract_features, FEATURE_NAMES, _feature_dict
     import numpy as np
@@ -77,5 +71,5 @@ if __name__ == "__main__":
         print("usage: python predict.py image.jpg", file=sys.stderr)
         sys.exit(1)
     score = predict(sys.argv[1])
-    # ONLY the number on stdout.
+    # number on stdout.
     print(round(score, 4))
